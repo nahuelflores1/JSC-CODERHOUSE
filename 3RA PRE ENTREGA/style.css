@@ -1,0 +1,141 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Kanit", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+.navbar .col-4 .navbar-brand {
+    display: flex;
+    justify-content: center;
+}
+.navbar .col-4 .navbar-brand img {
+    width: 70%;
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.banner h1 {
+    position: absolute;
+    text-align: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    z-index: 11111111;
+    letter-spacing: 1px;
+}
+.banner img {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+    filter: brightness(20%);
+}
+
+.sale {
+    font-size: 14px;
+    background-color: black;
+    text-align: center;
+    padding: 9px 2rem;
+    letter-spacing: 0.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-bottom: 0;
+}
+
+.row .col-lg-3 {
+    padding: 50px;
+}
+
+.row .col-lg-3 h6 {
+    font-size: 40px;
+    text-align: center;
+    border-bottom: 2px solid;
+}
+
+.row .col-lg-3 h5 {
+    margin: 25px 0px;
+    border-bottom: 1px solid;
+}
+
+.text-center {
+    font-size: 4vh;
+    margin-top: 50px !important;
+}
+
+#contenedor-zapatillas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#contenedor-carrito {
+    display: flex;
+    justify-content: center;
+}
+
+.banner-products {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.banner-products h1 {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 70px;
+    display: flex;
+    align-items: center;
+    z-index: 11111111;
+    letter-spacing: 1px;
+}
+.banner-products img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+.zapatilla {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 18%;
+    margin: 20px;
+    background: lightblue;
+    border-radius: 10px;
+}
+
+.carrito {
+    margin-top: 80px;
+    background-color: #333333;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    padding: 20px;
+}
+
+.btn-agregar {
+    border-radius: 6px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 4px;
+    font-size: 13px;
+}
+
+#btn-filtrar {
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 8px;
+    font-size: 20px;
+}
