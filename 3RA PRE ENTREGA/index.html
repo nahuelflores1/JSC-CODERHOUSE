@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
     <title>KicksMarket</title>
 </head>
@@ -18,11 +19,18 @@
     <p class="sale">¡Use el código ET36 para obtener hasta un 15% de descuento en el mes de agosto!</p>
     <header>
         <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid col-4">
-                <a class="navbar-brand" href="main.php"><img src="./img/kicksmarket.png" alt=""></a>
+            <div class="col-4">
+                <a class="navbar-brand" href="./index.html"><img src="./img/kicksmarket.png" alt=""></a>
+            </div>
+            <div style="display: flex; justify-content: flex-end;" class="col-8 search-container">
+                <form style="width: 40%; padding: 0px 20px;" class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Buscar">
+                    <button class="btn btn-danger" type="submit">Buscar</button>
+                </form>
             </div>
         </nav>
     </header>
+
     <main>
         <section class="banner">
             <h1>ZAPATILLAS</h1>
@@ -68,9 +76,9 @@
                 </ul>
                 <button id="btn-filtrar">Filtrar</button>
             </div>
-            <div class="col-lg-9 flex-column">
+            <div class="col-lg-9">
                 <h5 class="text-center" id="textChange">TODOS LOS PRODUCTOS</h5>
-                <div class="flex-wrap" id="contenedor-zapatillas"></div>
+                <div class="row" id="contenedor-zapatillas"></div>
             </div>
         </div>
         <div id="seccion-carrito">
@@ -82,10 +90,11 @@
             <div id="contenedor-carrito"></div>
         </div>
     </main>
-    <script src="app.js"></script>
-    <footer style="padding-top: 100px;"></footer>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.min.js"></script>
 
+    <footer style="padding-top: 100px;"></footer>
+    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.min.js"></script>
 </body>
+
 
 </html>

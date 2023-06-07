@@ -11,7 +11,7 @@
     justify-content: center;
 }
 .navbar .col-4 .navbar-brand img {
-    width: 70%;
+    width: 50%;
 }
 
 .banner {
@@ -102,12 +102,13 @@
 }
 
 .zapatilla {
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 18%;
+    width: 17%;
     margin: 20px;
-    background: lightblue;
+    background: #67676757;
     border-radius: 10px;
 }
 
@@ -150,8 +151,6 @@
     object-fit: cover;
     width: 100%;
     height: 190px;
-    padding: 10px;
-    border-radius: 16px;
 }
 
 .zapatilla-carrito {
@@ -160,7 +159,7 @@
     align-items: center;
     width: 10%;
     margin: 20px;
-    background: lightblue;
+    background: #67676757;
     border-radius: 10px;
 }
 
@@ -168,4 +167,35 @@
     border-radius: 20px;
     padding: 15px;
     width: 100%;
+}
+
+.zapatilla-carrito-img {
+    object-fit: cover;
+    width: 100%;
+    height: 190px;
+}
+
+.zapatilla-carrito-info{
+    text-align: center;
+    margin: 10px;
+}
+
+.btn-disminuir {
+    display: flex;
+    width: 20px;
+    height: 21px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-aumentar {
+    display: flex;
+    width: 20px;
+    height: 21px;
+    align-items: center;
+    justify-content: center;
+}
+
+.zapatilla-carrito-cantidad {
+    display: flex;
 }
