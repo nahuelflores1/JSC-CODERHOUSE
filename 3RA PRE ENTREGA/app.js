@@ -1,15 +1,56 @@
 const zapatillas = [
-    { id: 1, marca: "Nike", talle: 40, modelo: "Air Max 90", precio: 150 },
-    { id: 2, marca: "Adidas", talle: 42, modelo: "Superstar", precio: 120 },
-    { id: 3, marca: "Puma", talle: 41, modelo: "Suede Classic", precio: 100 },
-    { id: 4, marca: "Nike", talle: 39, modelo: "Air Force 1", precio: 160 },
-    { id: 5, marca: "Adidas", talle: 43, modelo: "Stan Smith", precio: 110 },
-    { id: 6, marca: "Reebok", talle: 38, modelo: "Classic Leather", precio: 90 },
-    { id: 7, marca: "New Balance", talle: 41, modelo: "574", precio: 130 },
-    { id: 8, marca: "Converse", talle: 40, modelo: "Chuck Taylor All Star", precio: 80 },
-    { id: 9, marca: "Vans", talle: 42, modelo: "Old Skool", precio: 95 },
-    { id: 10, marca: "Under Armour", talle: 43, modelo: "HOVR Phantom", precio: 140 },
+    {
+        id: 1,
+        marca: "Nike",
+        talle: 40,
+        modelo: "Air Max 90",
+        precio: 150,
+        imagen: "./img/airmax.jpg",
+    },
+    {
+        id: 2,
+        marca: "Adidas",
+        talle: 42,
+        modelo: "Superstar",
+        precio: 120,
+        imagen: "./img/superstar.jpg",
+    },
+    {
+        id: 3,
+        marca: "Puma",
+        talle: 41,
+        modelo: "Suede Classic",
+        precio: 100,
+        imagen: "./img/pumasuede.jpg",
+    },
+    {
+        id: 4,
+        marca: "Jordan",
+        talle: 39,
+        modelo: "Retro 4 Georgetown",
+        precio: 340,
+        imagen: "./img/retro4.jpg",
+    },
+    {
+        id: 5,
+        marca: "Jordan",
+        talle: 40,
+        modelo: "Red 1 Mid",
+        precio: 650,
+        imagen: "./img/airjordan.jpg",
+    },
+    {
+        id: 6,
+        marca: "Adidas",
+        talle: 42,
+        modelo: "Forum",
+        precio: 140,
+        imagen: "./img/forum.jpg",
+    },
 ];
+
+let total = 0;
+let carrito = [];
 
 function mostrarZapatillas(zapatillas) {
     const contenedor = document.getElementById("contenedor-zapatillas");
@@ -20,8 +61,8 @@ function mostrarZapatillas(zapatillas) {
         const divZapatilla = document.createElement("div");
         divZapatilla.classList.add("zapatilla");
         divZapatilla.innerHTML = `
+        <img class="zapatillas" src="${zapatilla.imagen}" alt="${zapatilla.modelo}">
         <p>Marca: ${zapatilla.marca}</p>
-        <p>Talle: ${zapatilla.talle}</p>
         <p>Modelo: ${zapatilla.modelo}</p>
         <p>Precio: $${zapatilla.precio}</p>
         <button class="btn-agregar" data-id="${zapatilla.id}">Agregar al carrito</button>
@@ -40,86 +81,42 @@ function agregarAlCarrito(event) {
     const zapatilla = zapatillas.find((z) => z.id === zapatillaId);
 
     if (zapatilla) {
-        let carrito = obtenerCarrito();
         carrito.push(zapatilla);
-        guardarCarrito(carrito);
+        total += zapatilla.precio;
         mostrarCarrito();
+        mostrarTotal();
         mostrarAnimacion("Zapatilla agregada al carrito.");
     }
 }
 
-function obtenerCarrito() {
-    const carritoJSON = localStorage.getItem("carrito");
-    return carritoJSON ? JSON.parse(carritoJSON) : [];
-}
-
-function guardarCarrito(carrito) {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-}
-
 function mostrarCarrito() {
-    const carrito = obtenerCarrito();
     const contenedorCarrito = document.getElementById("contenedor-carrito");
     contenedorCarrito.innerHTML = "";
 
-    if (carrito.length === 0) {
-        const mensajeCarritoVacio = document.createElement("p");
-        mensajeCarritoVacio.textContent = "El carrito está vacío.";
-        contenedorCarrito.appendChild(mensajeCarritoVacio);
-    } else {
-        for (let i = 0; i < carrito.length; i++) {
-            const zapatilla = carrito[i];
-            const divZapatilla = document.createElement("div");
-            divZapatilla.classList.add("zapatilla");
-            divZapatilla.innerHTML = `
-          <p>Marca: ${zapatilla.marca}</p>
-          <p>Talle: ${zapatilla.talle}</p>
-          <p>Modelo: ${zapatilla.modelo}</p>
-          <p>Precio: $${zapatilla.precio}</p>
-        `;
-            contenedorCarrito.appendChild(divZapatilla);
-        }
+    for (let i = 0; i < carrito.length; i++) {
+        const zapatilla = carrito[i];
+        const divZapatilla = document.createElement("div");
+        divZapatilla.classList.add("zapatilla-carrito");
+        divZapatilla.innerHTML = `
+        <img class="zapatilla-imagen" src="${zapatilla.imagen}" alt="${zapatilla.modelo}">
+        <div>
+        <p>Marca: ${zapatilla.marca}</p>
+        <p>Modelo: ${zapatilla.modelo}</p>
+        <p>Precio: $${zapatilla.precio}</p>
+        </div>
+    `;
+        contenedorCarrito.appendChild(divZapatilla);
     }
 }
 
-function filtrarZapatillas() {
-    const marcasSeleccionadas = obtenerMarcasSeleccionadas();
-    const tallesSeleccionados = obtenerTallesSeleccionados();
-
-    const zapatillasFiltradas = zapatillas.filter((zapatilla) => {
-        return (
-            (marcasSeleccionadas.length === 0 ||
-                marcasSeleccionadas.includes(zapatilla.marca)) &&
-            (tallesSeleccionados.length === 0 ||
-                tallesSeleccionados.includes(zapatilla.talle))
-        );
-    });
-
-    mostrarZapatillas(zapatillasFiltradas);
-}
-
-function obtenerMarcasSeleccionadas() {
-    const marcasCheckbox = document.querySelectorAll(
-        'input[type="checkbox"][id^="marca-"]:checked'
-    );
-    const marcasSeleccionadas = Array.from(marcasCheckbox).map(
-        (checkbox) => checkbox.value
-    );
-    return marcasSeleccionadas;
-}
-
-function obtenerTallesSeleccionados() {
-    const tallesCheckbox = document.querySelectorAll(
-        'input[type="checkbox"][id^="talle-"]:checked'
-    );
-    const tallesSeleccionados = Array.from(tallesCheckbox).map((checkbox) =>
-        parseInt(checkbox.value)
-    );
-    return tallesSeleccionados;
+function mostrarTotal() {
+    const totalElement = document.getElementById("total");
+    totalElement.textContent = `Total: $${total.toFixed(2)}`;
 }
 
 function mostrarAnimacion(mensaje) {
     Swal.fire({
+        position: "top-end",
         icon: "success",
         title: mensaje,
         showConfirmButton: false,
@@ -127,10 +124,51 @@ function mostrarAnimacion(mensaje) {
     });
 }
 
-mostrarZapatillas(zapatillas);
-guardarCarrito([]);
-mostrarCarrito();
+document.getElementById("btn-filtrar").addEventListener("click", function () {
+    const marcasSeleccionadas = obtenerMarcasSeleccionadas();
+    const tallesSeleccionados = obtenerTallesSeleccionados();
 
-document
-    .getElementById("btn-filtrar")
-    .addEventListener("click", filtrarZapatillas);
+    const zapatillasFiltradas = filtrarZapatillas(
+        marcasSeleccionadas,
+        tallesSeleccionados
+    );
+
+    if (zapatillasFiltradas.length === 0) {
+        mostrarZapatillas(zapatillas);
+    } else {
+        mostrarZapatillas(zapatillasFiltradas);
+    }
+});
+
+function obtenerMarcasSeleccionadas() {
+    const marcas = document.querySelectorAll(
+        'input[type="checkbox"][value][id^="marca-"]:checked'
+    );
+    const marcasSeleccionadas = Array.from(marcas).map((marca) => marca.value);
+    return marcasSeleccionadas;
+}
+
+function obtenerTallesSeleccionados() {
+    const talles = document.querySelectorAll(
+        'input[type="checkbox"][value][id^="talle-"]:checked'
+    );
+    const tallesSeleccionados = Array.from(talles).map((talle) =>
+        parseInt(talle.value)
+    );
+    return tallesSeleccionados;
+}
+
+function filtrarZapatillas(marcasSeleccionadas, tallesSeleccionados) {
+    return zapatillas.filter((zapatilla) => {
+        const marcaSeleccionada =
+            marcasSeleccionadas.length === 0 ||
+            marcasSeleccionadas.includes(zapatilla.marca);
+        const talleSeleccionado =
+            tallesSeleccionados.length === 0 ||
+            tallesSeleccionados.includes(zapatilla.talle);
+        return marcaSeleccionada && talleSeleccionado;
+    });
+}
+
+mostrarZapatillas(zapatillas);
+mostrarTotal();

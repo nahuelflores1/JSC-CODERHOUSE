@@ -30,7 +30,7 @@
 }
 .banner img {
     width: 100%;
-    height: 70vh;
+    height: 40vh;
     object-fit: cover;
     filter: brightness(20%);
 }
@@ -112,6 +112,7 @@
 }
 
 .carrito {
+    margin-bottom: 0px;
     margin-top: 80px;
     background-color: #333333;
     color: white;
@@ -119,6 +120,11 @@
     text-align: center;
     font-size: 40px;
     padding: 20px;
+
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
 }
 
 .btn-agregar {
@@ -138,4 +144,28 @@
     color: white;
     padding: 8px;
     font-size: 20px;
+}
+
+.zapatillas {
+    object-fit: cover;
+    width: 100%;
+    height: 190px;
+    padding: 10px;
+    border-radius: 16px;
+}
+
+.zapatilla-carrito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 10%;
+    margin: 20px;
+    background: lightblue;
+    border-radius: 10px;
+}
+
+.zapatilla-imagen {
+    border-radius: 20px;
+    padding: 15px;
+    width: 100%;
 }
