@@ -130,13 +130,10 @@ function agregarAlCarrito(event) {
     const zapatilla = zapatillas.find((z) => z.id === zapatillaId);
 
     if (zapatilla) {
-        // Verificar si el producto ya está en el carrito
         const productoExistente = carrito.find((p) => p.id === zapatillaId);
         if (productoExistente) {
-            // Incrementar la cantidad del producto existente
             productoExistente.cantidad++;
         } else {
-            // Agregar el producto al carrito con cantidad inicializada en 1
             zapatilla.cantidad = 1;
             carrito.push(zapatilla);
         }
