@@ -1,89 +1,5 @@
-const zapatillas = [
-    {
-        id: 1,
-        marca: "Nike",
-        talle: 40,
-        modelo: "Air Max 90",
-        precio: 150,
-        imagen: "./img/airmax.jpg",
-    },
-    {
-        id: 2,
-        marca: "Adidas",
-        talle: 42,
-        modelo: "Superstar",
-        precio: 120,
-        imagen: "./img/superstar.jpg",
-    },
-    {
-        id: 3,
-        marca: "Puma",
-        talle: 41,
-        modelo: "Suede Classic",
-        precio: 100,
-        imagen: "./img/pumasuede.jpg",
-    },
-    {
-        id: 4,
-        marca: "Jordan",
-        talle: 39,
-        modelo: "Retro 4 Georgetown",
-        precio: 340,
-        imagen: "./img/retro4.jpg",
-    },
-    {
-        id: 5,
-        marca: "Jordan",
-        talle: 40,
-        modelo: "Red 1 Mid",
-        precio: 650,
-        imagen: "./img/airjordan.jpg",
-    },
-    {
-        id: 6,
-        marca: "Adidas",
-        talle: 42,
-        modelo: "Forum",
-        precio: 140,
-        imagen: "./img/forum.jpg",
-    },
-    {
-        id: 7,
-        marca: "Nike",
-        talle: 41,
-        modelo: "Air Max 97",
-        precio: 220,
-        imagen: "./img/97airmaxx.jpg",
-    },
-    {
-        id: 8,
-        marca: "Adidas",
-        talle: 42,
-        modelo: "Yezzy",
-        precio: 330,
-        imagen: "./img/yisi.jpg",
-    },
-    {
-        id: 9,
-        marca: "Nike",
-        talle: 43,
-        modelo: "Air Force",
-        precio: 140,
-        imagen: "./img/airforce.jpg",
-    },
-    {
-        id: 10,
-        marca: "Puma ",
-        talle: 40,
-        modelo: "Future",
-        precio: 140,
-        imagen: "./img/futurepuma.jpg",
-    },
-];
-
 let total = 0;
 let carrito = [];
-let contadorCarrito = 0;
 
 function mostrarZapatillas(zapatillas) {
     const contenedor = document.getElementById("contenedor-zapatillas");
@@ -114,7 +30,7 @@ function mostrarZapatillas(zapatillas) {
                 <p>Modelo: ${zapatilla.modelo}</p>
                 <p>Precio: $${zapatilla.precio}</p>
                 <button class="btn-agregar" data-id="${zapatilla.id}">Agregar al carrito</button>
-            `;
+              `;
             filaDiv.appendChild(divZapatilla);
         }
 
@@ -139,67 +55,15 @@ function agregarAlCarrito(event) {
         }
 
         total += zapatilla.precio;
-        contadorCarrito++;
         mostrarCarrito();
         mostrarTotal();
-        mostrarContadorCarrito();
-        mostrarAnimacion("Zapatilla agregada al carrito.");
-    }
-}
 
-function eliminarDelCarrito(event) {
-    const zapatillaId = parseInt(event.target.dataset.id);
-    const index = carrito.findIndex((z) => z.id === zapatillaId);
-
-    if (index !== -1) {
-        const zapatilla = carrito[index];
-        carrito.splice(index, 1);
-        total -= zapatilla.precio;
-        contadorCarrito--;
-        mostrarCarrito();
-        mostrarTotal();
-        mostrarContadorCarrito();
-    }
-}
-
-function mostrarCarrito() {
-    const contenedorCarrito = document.getElementById("contenedor-carrito");
-    contenedorCarrito.innerHTML = "";
-
-    for (let i = 0; i < carrito.length; i++) {
-        const zapatilla = carrito[i];
-        const divZapatilla = document.createElement("div");
-        divZapatilla.classList.add("zapatilla-carrito");
-        divZapatilla.innerHTML = `
-        <img class="zapatilla-carrito-img" src="${zapatilla.imagen}" alt="${zapatilla.modelo}">
-        <div class="zapatilla-carrito-info">
-            <p class="zapatilla-carrito-marca">${zapatilla.marca}</p>
-            <p class="zapatilla-carrito-modelo">${zapatilla.modelo}</p>
-            <p class="zapatilla-carrito-precio">$${zapatilla.precio}</p>
-            <div class="zapatilla-carrito-cantidad">
-                <button class="btn-disminuir" data-id="${zapatilla.id}">-</button>
-                <p style="padding:0px 10px"> ${zapatilla.cantidad}</p>
-                <button class="btn-aumentar" data-id="${zapatilla.id}">+</button>
-            </div>
-        </div>
-        <button class="btn-quitar" data-id="${zapatilla.id}">Eliminar</button>
-      `;
-        contenedorCarrito.appendChild(divZapatilla);
-    }
-
-    const botonesQuitar = document.getElementsByClassName("btn-quitar");
-    for (let i = 0; i < botonesQuitar.length; i++) {
-        botonesQuitar[i].addEventListener("click", eliminarDelCarrito);
-    }
-
-    const botonesDisminuir = document.getElementsByClassName("btn-disminuir");
-    for (let i = 0; i < botonesDisminuir.length; i++) {
-        botonesDisminuir[i].addEventListener("click", disminuirCantidad);
-    }
-
-    const botonesAumentar = document.getElementsByClassName("btn-aumentar");
-    for (let i = 0; i < botonesAumentar.length; i++) {
-        botonesAumentar[i].addEventListener("click", aumentarCantidad);
+        Swal.fire({
+            icon: "success",
+            title: "Producto agregado al carrito",
+            text: `${zapatilla.marca} ${zapatilla.modelo} se ha agregado al carrito de compras.`,
+            confirmButtonText: "OK",
+        });
     }
 }
 
@@ -211,10 +75,8 @@ function eliminarDelCarrito(event) {
         const zapatilla = carrito[index];
         carrito.splice(index, 1);
         total -= zapatilla.precio * zapatilla.cantidad;
-        contadorCarrito -= zapatilla.cantidad;
         mostrarCarrito();
         mostrarTotal();
-        mostrarContadorCarrito();
     }
 }
 
@@ -225,10 +87,8 @@ function disminuirCantidad(event) {
     if (zapatilla && zapatilla.cantidad > 1) {
         zapatilla.cantidad--;
         total -= zapatilla.precio;
-        contadorCarrito--;
         mostrarCarrito();
         mostrarTotal();
-        mostrarContadorCarrito();
     }
 }
 
@@ -239,10 +99,8 @@ function aumentarCantidad(event) {
     if (zapatilla) {
         zapatilla.cantidad++;
         total += zapatilla.precio;
-        contadorCarrito++;
         mostrarCarrito();
         mostrarTotal();
-        mostrarContadorCarrito();
     }
 }
 
@@ -251,31 +109,23 @@ function mostrarTotal() {
     totalElemento.textContent = "$" + total.toFixed(2);
 }
 
-function mostrarContadorCarrito() {
-    const contadorCarritoElemento = document.getElementById("contador-carrito");
-    contadorCarritoElemento.textContent = contadorCarrito;
-}
-
-function mostrarAnimacion(mensaje) {
-    const animacion = document.getElementById("animacion");
-    animacion.textContent = mensaje;
-    animacion.classList.add("mostrar");
-
-    setTimeout(() => {
-        animacion.classList.remove("mostrar");
-    }, 3000);
-}
-
 document.getElementById("btn-filtrar").addEventListener("click", function () {
     const marcasSeleccionadas = obtenerMarcasSeleccionadas();
     const tallesSeleccionados = obtenerTallesSeleccionados();
 
-    const zapatillasFiltradas = filtrarZapatillas(
-        marcasSeleccionadas,
-        tallesSeleccionados
-    );
-
-    mostrarZapatillas(zapatillasFiltradas);
+    fetch("zapatillas.json")
+        .then((response) => response.json())
+        .then((data) => {
+            const zapatillas = filtrarZapatillas(
+                data,
+                marcasSeleccionadas,
+                tallesSeleccionados
+            );
+            mostrarZapatillas(zapatillas);
+        })
+        .catch((error) => {
+            console.error("Error al cargar los datos:", error);
+        });
 });
 
 function obtenerMarcasSeleccionadas() {
@@ -296,7 +146,11 @@ function obtenerTallesSeleccionados() {
     return tallesSeleccionados;
 }
 
-function filtrarZapatillas(marcasSeleccionadas, tallesSeleccionados) {
+function filtrarZapatillas(
+    zapatillas,
+    marcasSeleccionadas,
+    tallesSeleccionados
+) {
     return zapatillas.filter((zapatilla) => {
         const marcaSeleccionada =
             marcasSeleccionadas.length === 0 ||
@@ -314,11 +168,18 @@ document.querySelector("form").addEventListener("submit", function (event) {
     const searchTerm = document
         .querySelector("input[type='search']")
         .value.trim();
-    const resultados = buscarProductos(searchTerm);
-    mostrarZapatillas(resultados);
+    fetch("zapatillas.json")
+        .then((response) => response.json())
+        .then((data) => {
+            const resultados = buscarProductos(data, searchTerm);
+            mostrarZapatillas(resultados);
+        })
+        .catch((error) => {
+            console.error("Error al cargar los datos:", error);
+        });
 });
 
-function buscarProductos(searchTerm) {
+function buscarProductos(zapatillas, searchTerm) {
     const resultados = zapatillas.filter((zapatilla) => {
         const marcaCoincide = zapatilla.marca
             .toLowerCase()
@@ -331,6 +192,50 @@ function buscarProductos(searchTerm) {
     return resultados;
 }
 
-mostrarZapatillas(zapatillas);
-mostrarTotal();
-mostrarContadorCarrito();
+fetch("zapatillas.json")
+    .then((response) => response.json())
+    .then((data) => {
+        zapatillas = data;
+        mostrarZapatillas(zapatillas);
+    })
+    .catch((error) => {
+        console.error("Error al cargar los datos:", error);
+    });
+
+function mostrarCarrito() {
+    const carritoElemento = document.getElementById("contenedor-carrito");
+    carritoElemento.innerHTML = "";
+
+    carrito.forEach((zapatilla) => {
+        const divZapatilla = document.createElement("div");
+        divZapatilla.classList.add("zapatilla-carrito");
+        divZapatilla.innerHTML = `
+              <img class="zapatillas" src="${zapatilla.imagen}" alt="${zapatilla.modelo}">
+              <p>Marca: ${zapatilla.marca}</p>
+              <p>Modelo: ${zapatilla.modelo}</p>
+              <p>Precio: $${zapatilla.precio}</p>
+              <p>Cantidad: ${zapatilla.cantidad}</p>
+              <button class="btn-eliminar" data-id="${zapatilla.id}">Eliminar</button>
+              <button class="btn-disminuir" data-id="${zapatilla.id}">-</button>
+              <button class="btn-aumentar" data-id="${zapatilla.id}">+</button>
+            `;
+
+        divZapatilla
+            .querySelector(".btn-eliminar")
+            .addEventListener("click", eliminarDelCarrito);
+        divZapatilla
+            .querySelector(".btn-disminuir")
+            .addEventListener("click", disminuirCantidad);
+        divZapatilla
+            .querySelector(".btn-aumentar")
+            .addEventListener("click", aumentarCantidad);
+
+        carritoElemento.appendChild(divZapatilla);
+    });
+
+    if (carrito.length === 0) {
+        const mensaje = document.createElement("p");
+        mensaje.textContent = "El carrito está vacío.";
+        carritoElemento.appendChild(mensaje);
+    }
+}

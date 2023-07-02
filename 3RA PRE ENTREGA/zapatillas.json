@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "marca": "Nike",
+        "talle": 40,
+        "modelo": "Air Max 90",
+        "precio": 150,
+        "imagen": "./img/airmax.jpg"
+    },
+    {
+        "id": 2,
+        "marca": "Adidas",
+        "talle": 42,
+        "modelo": "Superstar",
+        "precio": 120,
+        "imagen": "./img/superstar.jpg"
+    },
+    {
+        "id": 3,
+        "marca": "Puma",
+        "talle": 41,
+        "modelo": "Suede Classic",
+        "precio": 100,
+        "imagen": "./img/pumasuede.jpg"
+    },
+    {
+        "id": 4,
+        "marca": "Jordan",
+        "talle": 39,
+        "modelo": "Retro 4 Georgetown",
+        "precio": 340,
+        "imagen": "./img/retro4.jpg"
+    },
+    {
+        "id": 5,
+        "marca": "Jordan",
+        "talle": 40,
+        "modelo": "Red 1 Mid",
+        "precio": 650,
+        "imagen": "./img/airjordan.jpg"
+    },
+    {
+        "id": 6,
+        "marca": "Adidas",
+        "talle": 42,
+        "modelo": "Forum",
+        "precio": 140,
+        "imagen": "./img/forum.jpg"
+    },
+    {
+        "id": 7,
+        "marca": "Nike",
+        "talle": 41,
+        "modelo": "Air Max 97",
+        "precio": 220,
+        "imagen": "./img/97airmaxx.jpg"
+    },
+    {
+        "id": 8,
+        "marca": "Adidas",
+        "talle": 42,
+        "modelo": "Yezzy",
+        "precio": 330,
+        "imagen": "./img/yisi.jpg"
+    },
+    {
+        "id": 9,
+        "marca": "Nike",
+        "talle": 43,
+        "modelo": "Air Force",
+        "precio": 140,
+        "imagen": "./img/airforce.jpg"
+    },
+    {
+        "id": 10,
+        "marca": "Puma ",
+        "talle": 40,
+        "modelo": "Future",
+        "precio": 140,
+        "imagen": "./img/futurepuma.jpg"
+    }
+]
